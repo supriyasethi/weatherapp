@@ -22,7 +22,7 @@ header {
   justify-content: left;
 }
 
-.form-button {
+.location-button {
   border: none;
   padding: 14px 32px;
   justify-content: center;
@@ -35,30 +35,6 @@ header {
   cursor: pointer;
   border-radius: 8px;
   color: white;
-  background-color: rgb(163, 207, 224);
-}
-
-input {
-  width: 50%;
-  padding: 12px 20px;
-  border: 2px solid rgb(2, 77, 100);
-  border-radius: 8px;
-  color: rgb(2, 77, 100);
-
-  background-image: url("cold.png");
-  background-position: 10px 10px;
-  background-repeat: no-repeat;
-  padding-left: 40px;
-
-  justify-content: center;
-  text-align: center;
-  text-decoration: none;
-  font-family: sans-serif;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  border-radius: 8px;
   background-color: rgb(163, 207, 224);
 }
 .location,

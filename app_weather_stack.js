@@ -1,12 +1,4 @@
-let textInput = document.querySelector(".form-text");
-let locationButton = document.querySelector(".form-button");
-window.addEventListener(
-  "error",
-  function (e) {
-    console.log(e);
-  },
-  true
-);
+let locationButton = document.querySelector("button");
 
 window.addEventListener("load", () => {
   locationButton.addEventListener("click", () => {
@@ -22,13 +14,15 @@ window.addEventListener("load", () => {
     let temperatureSection = document.querySelector(".temperature");
     let temperatureSpan = document.querySelector(".temperature span");
     let icon = document.querySelector(".icon");
-    if (textInput.value == "") {
-      alert("Fill the city name");
-    } else if (navigator.geolocation) {
+
+    if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         long = position.coords.longitude;
         lat = position.coords.latitude;
-        const api = `https://api.openweathermap.org/data/2.5/weather?q=${textInput.value}&appid=0b7348b503660d40ef61b344729836c8`;
+        console.log(lat);
+        console.log(long);
+        //const api = `http://api.weatherstack.com/current?access_key=10ab4a7df105deb90a7807dd883068da&query=${lat},${long}`;
+        const api = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=0b7348b503660d40ef61b344729836c8`;
         console.log(api);
         fetch(api)
           .then((response) => {
@@ -36,28 +30,22 @@ window.addEventListener("load", () => {
           })
           .then((data) => {
             console.log(data);
-
+            const {
+              temperature,
+              weather_descriptions,
+              weather_icons,
+            } = data.current;
             //Set DOM elements from the API
             temperatureSpan.textContent = "C";
-            temperatureDegree.textContent = (data.main.temp - 273.15).toFixed(
-              2
-            );
-            temperatureDescription.textContent = data.weather[0].description;
-
-            console.log(data.weather[0].description);
-            name = data.name;
-
-            locationTimezone.textContent = name;
+            temperatureDegree.textContent = temperature;
+            temperatureDescription.textContent = data.weather.description;
+            name = data.main.name;
+            region = data.location.region;
+            locationTimezone.textContent = name + "/" + region;
             // Formula for  Fahrenheit
-            let fahrenheit = ((data.main.temp - 273.15) * (9 / 5) + 32).toFixed(
-              2
-            );
+            let fahrenheit = temperature * (9 / 5) + 32;
             //set Icon
-            var iconurl =
-              "http://openweathermap.org/img/w/" +
-              data.weather[0].icon +
-              ".png";
-            icon.src = iconurl;
+            icon.src = weather_icons;
 
             // change temparature to Fahrenheit
             temperatureSection.addEventListener("click", () => {
@@ -66,9 +54,7 @@ window.addEventListener("load", () => {
                 temperatureDegree.textContent = Math.floor(fahrenheit);
               } else {
                 temperatureSpan.textContent = "C";
-                temperatureDegree.textContent = (
-                  data.main.temp - 273.15
-                ).toFixed(2);
+                temperatureDegree.textContent = temperature;
               }
             });
           });

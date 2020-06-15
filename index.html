@@ -7,15 +7,27 @@
 	<link rel="icon" href="cold.png">
     <title>WeatherApp</title>
   </head>
+
   <header >
     <div class="weather", text-align=left>
     <h1>Weather Today</h1>
-    </header>
-  </div>
-  <body>    
-    <div class="button" text-align="center">
-      <button class="location-button" id="button" type="button" onclick="">Enable Location</button>
     </div>
+  </header>
+  
+
+
+  <body>  
+    <section>  
+    <div class="form" text-align="center">
+      <form action="">
+        <input type="text" class="form-text">
+        <button type="button" class="form-button">Find Weather</button>
+      </form>
+    </div>
+  </section>
+
+  <section>
+    <div id="location-temperature">
     <div class="location">
       <h1 class="location-timezone"></h1>
         <img src="" class="icon"></img>
@@ -28,7 +40,11 @@
       </div>
       <div class="temperature-description"></div>
     </div>
+  </div>
+  </section>
+
     <script src="app.js"></script>
     <script src="skycons.js"></script>
   </body>
+
 </html>

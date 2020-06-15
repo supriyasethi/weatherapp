@@ -37,7 +37,7 @@ window.addEventListener("load", () => {
           //setIcons(
           //  weather_descriptions,
           //  document.querySelector(".icon"),
-          //  is_day
+          //
           //);
 
           // change temparature to celcius
@@ -54,7 +54,7 @@ window.addEventListener("load", () => {
     });
   }
 
-  function setIcons(icon, iconID, day) {
+  function setIcons(icon, iconID) {
     const skycons = new Skycons({ color: "white" });
     console.log(icon);
     //const currentIcon = String(icon).replace(/ /g, "_").toUpperCase();
